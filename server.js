@@ -14,6 +14,10 @@ const contactRoutes = require('./routes/contact');
 const usersRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 
+app.get("/", (req, res) => {
+  res.send(`CONTACT API ${new Date()}`);
+})
+
 app.use('/api/contact',contactRoutes);
 app.use('/api/users',usersRoutes);
 app.use('/api/auth',authRoutes);
