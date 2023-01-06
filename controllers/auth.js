@@ -30,10 +30,10 @@ exports.login = async(req,res)=>{
     const token = await jwt.sign(payload,config.get('jwtSecret'),{
       expiresIn:3600
     });
-    res.status(200).json({msg:"User logged in",token});
+    return res.status(200).json({msg:"User logged in",token, user});
   } catch (err) {
     console.log(err.message);
-    res.status(500).json({msg:'Server error'});
+    return res.status(500).json({msg:'Server error'});
   }
 }
 
@@ -42,9 +42,9 @@ exports.login = async(req,res)=>{
 exports.getUser = async(req,res)=>{
   try {
     const user = await User.findById(req.user.id).select('-password')
-    res.json(user);
+    return res.json(user);
   } catch (err) {
     console.log(err.message);
-    res.status(500).json({msg:'Server Error'});
+    return res.status(500).json({msg:'Server Error'});
   }
 }

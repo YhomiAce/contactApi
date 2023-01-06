@@ -9,10 +9,10 @@ exports.getAllContact = async(req,res)=>{
   try {
     const contacts = await Contact.find({user:req.user.id}).sort({date:-1});
 
-    res.json(contacts);
+    return res.json(contacts);
   } catch (err) {
     console.log(err.message);
-    res.status(500).json({msg:"Server Error"});
+    return res.status(500).json({msg:"Server Error"});
   }
 }
 
@@ -34,10 +34,10 @@ exports.storeContact = async(req,res)=>{
     });
     const contact = await newContact.save();
 
-    res.status(200).json(contact);
+    return res.status(200).json(contact);
   } catch (err) {
     console.log(err.message);
-    res.status(500).json({msg:"Server Error"});
+    return res.status(500).json({msg:"Server Error"});
   }
 }
 
