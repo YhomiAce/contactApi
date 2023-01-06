@@ -33,7 +33,7 @@ exports.register = async(req,res)=>{
       expiresIn:3600
     });
 
-    return res.status(202).json({msg:'User Registered',token:token});
+    return res.status(202).json({msg:'User Registered',token:token, user});
   } catch (err) {
     console.log(err.message);
     return res.status(500).json({msg:"Server error"});
